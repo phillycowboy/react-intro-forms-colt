@@ -5,19 +5,23 @@ class MultipleForm extends Component{
     constructor(props){
         super(props);
         this.state = {
-            username: ""
+            username: "",
+            email: "",
+            password: ""
         }
     }
     handleChange = (event) => {
         this.setState({
-            username: event.target.value
+            [event.target.name]: event.target.value
         })
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        alert(`You Entered: ${this.state.username}`)
+        alert(`You Entered: ${this.state.username} Email: ${this.state.email} Password: ${this.state.password}`)
         this.setState({
-            username: ""
+            username: "",
+            email: "",
+            password: ""
         })
     }
 
@@ -26,9 +30,14 @@ class MultipleForm extends Component{
     render(){
         return(
             <div>
-                <h1>Form Component</h1>
+                <h1>Multiple Input Form Component</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.username} onChange={this.handleChange}/>
+                    <label htmlFor="username">Username:</label>
+                    <input id="username" type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
+                    <label htmlFor="email">Email:</label>
+                    <input id="email" type="email" name="email" placeholder="email" value={this.state.email} onChange={this.handleChange}/>
+                    <label htmlFor="password">Password:</label>
+                    <input id="password" type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange}/>
                 <button>Submit!</button>
                 </form>
             </div>
